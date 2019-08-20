@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="76"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="60P-aQ-lnH">
-                                        <rect key="frame" x="119" y="22.5" width="176" height="32"/>
+                                        <rect key="frame" x="10" y="22.5" width="176" height="32"/>
                                         <segments>
                                             <segment title="Day"/>
                                             <segment title="Week"/>
@@ -29,12 +29,24 @@
                                             <action selector="didTapSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="8TS-m4-mRE"/>
                                         </connections>
                                     </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HNJ-UD-i6Y">
+                                        <rect key="frame" x="206" y="22.5" width="163" height="32"/>
+                                        <segments>
+                                            <segment title="Time"/>
+                                            <segment title="Popularity"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="didTapPopularitySegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="0Iv-v1-h0B"/>
+                                        </connections>
+                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="60P-aQ-lnH" firstAttribute="centerX" secondItem="3Cg-sh-2Ju" secondAttribute="centerX" id="3Yy-6P-HCt"/>
+                                    <constraint firstItem="60P-aQ-lnH" firstAttribute="leading" secondItem="3Cg-sh-2Ju" secondAttribute="leading" constant="10" id="DUj-qD-VR7"/>
                                     <constraint firstAttribute="height" constant="76" id="OC2-ze-BSe"/>
+                                    <constraint firstItem="HNJ-UD-i6Y" firstAttribute="leading" secondItem="60P-aQ-lnH" secondAttribute="trailing" constant="20" id="Udw-1d-Xeq"/>
                                     <constraint firstItem="60P-aQ-lnH" firstAttribute="centerY" secondItem="3Cg-sh-2Ju" secondAttribute="centerY" id="VCr-67-7pO"/>
+                                    <constraint firstItem="HNJ-UD-i6Y" firstAttribute="centerY" secondItem="60P-aQ-lnH" secondAttribute="centerY" id="kcX-Kv-8ib"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rh0-Pv-qL6">
@@ -56,6 +68,7 @@
                     </view>
                     <connections>
                         <outlet property="filterSegment" destination="60P-aQ-lnH" id="Mxo-4p-n9m"/>
+                        <outlet property="popularitySegment" destination="HNJ-UD-i6Y" id="aHY-49-QtB"/>
                         <outlet property="tableView" destination="rh0-Pv-qL6" id="A7d-Eq-lt1"/>
                     </connections>
                 </viewController>

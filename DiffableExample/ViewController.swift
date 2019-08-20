@@ -20,6 +20,11 @@ enum Period {
     case Month
 }
 
+enum FilterType: Int {
+    case time = 0
+    case popularity
+}
+
 ///Supported repos period segments
 enum RepoSegments: Int {
     case Day = 0
@@ -30,6 +35,10 @@ enum RepoSegments: Int {
 class ViewController: UIViewController {
     
     @IBOutlet weak var filterSegment: UISegmentedControl!
+    
+    @IBOutlet weak var popularitySegment: UISegmentedControl!
+    
+    
     @IBOutlet weak var tableView: UITableView!
     
     var dataSource: UITableViewDiffableDataSource<Section, Repository>! = nil
@@ -39,6 +48,7 @@ class ViewController: UIViewController {
     var filteredRepo: Array<Repository>?
     var olderDate = Date()
     var timer: Timer?
+    var popularitySelected = false
     
     
     override func viewDidLoad() {
@@ -48,6 +58,8 @@ class ViewController: UIViewController {
         repo = Array<Repository>()
         filteredRepo = Array<Repository>()
         filterSegment.selectedSegmentIndex = 2
+        popularitySegment.selectedSegmentIndex = 0
+        popularitySelected = popularitySegment.selectedSegmentIndex == 1
         didTapSegment(index: filterSegment.selectedSegmentIndex)
         setupTable()
         configureDataSource()
@@ -62,10 +74,18 @@ class ViewController: UIViewController {
     @IBAction func didTapSegment(_ sender: UISegmentedControl) {
         didTapSegment(index: sender.selectedSegmentIndex)
         updateUI()
-//        filteredRepo = repo?.filter{$0.createdAt >= olderDate }
+//        filteredRepo = filterRepo()
 //        tableView.reloadData()
         
     }
+    
+    @IBAction func didTapPopularitySegment(_ sender: UISegmentedControl) {
+        didTapPopularitySegment(index: sender.selectedSegmentIndex)
+        updateUI()
+        //        filteredRepo = filterRepo()
+        //        tableView.reloadData()
+    }
+    
     
     @objc func timerHandler(timer: Timer) {
         internalTimerHandler()
@@ -79,7 +99,7 @@ class ViewController: UIViewController {
                         self?.repo = result
                         self?.updateUI()
         //                DispatchQueue.main.async {
-        //                    self?.filteredRepo = self?.repo?.filter{$0.createdAt >= self?.olderDate ?? Date() }
+        //                    self?.filteredRepo = self?.filterRepo()
         //                    self?.tableView.reloadData()
         //                }
                         
@@ -104,6 +124,23 @@ extension ViewController {
             olderDate = Date().addDays(days: -1)
         }
         
+    }
+    
+    private func didTapPopularitySegment(index: Int) {
+        popularitySelected = index == 1
+           
+       }
+    
+    private func filterRepo() -> Array<Repository> {
+        guard let repo = repo else { return Array<Repository>()}
+        
+        let filterRepo = repo.filter{$0.createdAt >= olderDate}
+        
+        if popularitySelected {
+            return filterRepo.sorted(by: {$0.stargazersCount > $1.stargazersCount})
+        } else {
+            return filterRepo.sorted(by: {$0.createdAt > $1.createdAt})
+        }
     }
     
     private func setupTable() {
@@ -136,8 +173,7 @@ extension ViewController {
     }
     
     func updateUI(animated: Bool = true) {
-        guard let repo = repo else { return }
-        let filteredRepo = repo.filter{$0.createdAt >= olderDate }
+        let filteredRepo = filterRepo()
         
         let currentSnapshot = NSDiffableDataSourceSnapshot<Section, Repository>()
         
