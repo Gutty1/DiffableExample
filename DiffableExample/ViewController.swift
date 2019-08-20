@@ -39,6 +39,8 @@ class ViewController: UIViewController {
     var filteredRepo: Array<Repository>?
     var olderDate = Date()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "GitHub Repositories"
@@ -95,7 +97,7 @@ extension ViewController {
     }
     
     private func setupTable() {
-        tableView.register(ReposTableViewCell.self, forCellReuseIdentifier: ViewController.reuseIdentifier)
+        tableView.register(UINib(nibName: ViewController.reuseIdentifier, bundle: nil), forCellReuseIdentifier: ViewController.reuseIdentifier)
         tableView.dataSource = self
         
         
