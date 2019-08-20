@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,16 @@
 		0016F7B2230AEF16004FB3E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0016F7B0230AEF16004FB3E3 /* LaunchScreen.storyboard */; };
 		0016F7BD230AEF16004FB3E3 /* DiffableExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016F7BC230AEF16004FB3E3 /* DiffableExampleTests.swift */; };
 		0016F7C8230AEF16004FB3E3 /* DiffableExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016F7C7230AEF16004FB3E3 /* DiffableExampleUITests.swift */; };
+		0016F7DA230AF11B004FB3E3 /* NetworkPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 0016F7D9230AF11B004FB3E3 /* NetworkPackage */; };
+		0016F7E1230AF170004FB3E3 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016F7DC230AF170004FB3E3 /* Owner.swift */; };
+		0016F7E2230AF170004FB3E3 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016F7DD230AF170004FB3E3 /* Page.swift */; };
+		0016F7E3230AF170004FB3E3 /* OwnerAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016F7DE230AF170004FB3E3 /* OwnerAvatar.swift */; };
+		0016F7E4230AF170004FB3E3 /* JsonAssociatedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016F7DF230AF170004FB3E3 /* JsonAssociatedData.swift */; };
+		0016F7E5230AF170004FB3E3 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016F7E0230AF170004FB3E3 /* Repository.swift */; };
+		0016F7E7230AF1F5004FB3E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016F7E6230AF1F5004FB3E3 /* Constants.swift */; };
+		0016F7EB230AF285004FB3E3 /* ReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0016F7E9230AF285004FB3E3 /* ReposTableViewCell.xib */; };
+		0016F7EC230AF285004FB3E3 /* ReposTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016F7EA230AF285004FB3E3 /* ReposTableViewCell.swift */; };
+		0016F7EE230B1A7E004FB3E3 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016F7ED230B1A7E004FB3E3 /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +59,15 @@
 		0016F7C3230AEF16004FB3E3 /* DiffableExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiffableExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0016F7C7230AEF16004FB3E3 /* DiffableExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableExampleUITests.swift; sourceTree = "<group>"; };
 		0016F7C9230AEF16004FB3E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0016F7DC230AF170004FB3E3 /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
+		0016F7DD230AF170004FB3E3 /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		0016F7DE230AF170004FB3E3 /* OwnerAvatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerAvatar.swift; sourceTree = "<group>"; };
+		0016F7DF230AF170004FB3E3 /* JsonAssociatedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonAssociatedData.swift; sourceTree = "<group>"; };
+		0016F7E0230AF170004FB3E3 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		0016F7E6230AF1F5004FB3E3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0016F7E9230AF285004FB3E3 /* ReposTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReposTableViewCell.xib; sourceTree = "<group>"; };
+		0016F7EA230AF285004FB3E3 /* ReposTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReposTableViewCell.swift; sourceTree = "<group>"; };
+		0016F7ED230B1A7E004FB3E3 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0016F7DA230AF11B004FB3E3 /* NetworkPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,10 +122,13 @@
 				0016F7A5230AEF13004FB3E3 /* AppDelegate.swift */,
 				0016F7A7230AEF13004FB3E3 /* SceneDelegate.swift */,
 				0016F7A9230AEF13004FB3E3 /* ViewController.swift */,
+				0016F7E8230AF276004FB3E3 /* cells */,
+				0016F7DB230AF160004FB3E3 /* Model */,
 				0016F7AB230AEF13004FB3E3 /* Main.storyboard */,
 				0016F7AE230AEF16004FB3E3 /* Assets.xcassets */,
 				0016F7B0230AEF16004FB3E3 /* LaunchScreen.storyboard */,
 				0016F7B3230AEF16004FB3E3 /* Info.plist */,
+				0016F7ED230B1A7E004FB3E3 /* DateExtension.swift */,
 			);
 			path = DiffableExample;
 			sourceTree = "<group>";
@@ -128,6 +151,28 @@
 			path = DiffableExampleUITests;
 			sourceTree = "<group>";
 		};
+		0016F7DB230AF160004FB3E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0016F7DF230AF170004FB3E3 /* JsonAssociatedData.swift */,
+				0016F7DC230AF170004FB3E3 /* Owner.swift */,
+				0016F7DE230AF170004FB3E3 /* OwnerAvatar.swift */,
+				0016F7DD230AF170004FB3E3 /* Page.swift */,
+				0016F7E0230AF170004FB3E3 /* Repository.swift */,
+				0016F7E6230AF1F5004FB3E3 /* Constants.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0016F7E8230AF276004FB3E3 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				0016F7EA230AF285004FB3E3 /* ReposTableViewCell.swift */,
+				0016F7E9230AF285004FB3E3 /* ReposTableViewCell.xib */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,6 +189,9 @@
 			dependencies = (
 			);
 			name = DiffableExample;
+			packageProductDependencies = (
+				0016F7D9230AF11B004FB3E3 /* NetworkPackage */,
+			);
 			productName = DiffableExample;
 			productReference = 0016F7A2230AEF13004FB3E3 /* DiffableExample.app */;
 			productType = "com.apple.product-type.application";
@@ -216,6 +264,9 @@
 				Base,
 			);
 			mainGroup = 0016F799230AEF13004FB3E3;
+			packageReferences = (
+				0016F7D8230AF11B004FB3E3 /* XCRemoteSwiftPackageReference "NetworkPackage" */,
+			);
 			productRefGroup = 0016F7A3230AEF13004FB3E3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -235,6 +286,7 @@
 				0016F7B2230AEF16004FB3E3 /* LaunchScreen.storyboard in Resources */,
 				0016F7AF230AEF16004FB3E3 /* Assets.xcassets in Resources */,
 				0016F7AD230AEF13004FB3E3 /* Main.storyboard in Resources */,
+				0016F7EB230AF285004FB3E3 /* ReposTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,9 +311,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0016F7E3230AF170004FB3E3 /* OwnerAvatar.swift in Sources */,
+				0016F7EC230AF285004FB3E3 /* ReposTableViewCell.swift in Sources */,
 				0016F7AA230AEF13004FB3E3 /* ViewController.swift in Sources */,
+				0016F7E1230AF170004FB3E3 /* Owner.swift in Sources */,
+				0016F7E5230AF170004FB3E3 /* Repository.swift in Sources */,
 				0016F7A6230AEF13004FB3E3 /* AppDelegate.swift in Sources */,
+				0016F7EE230B1A7E004FB3E3 /* DateExtension.swift in Sources */,
 				0016F7A8230AEF13004FB3E3 /* SceneDelegate.swift in Sources */,
+				0016F7E4230AF170004FB3E3 /* JsonAssociatedData.swift in Sources */,
+				0016F7E2230AF170004FB3E3 /* Page.swift in Sources */,
+				0016F7E7230AF1F5004FB3E3 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +648,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0016F7D8230AF11B004FB3E3 /* XCRemoteSwiftPackageReference "NetworkPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Gutty1/NetworkPackage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0016F7D9230AF11B004FB3E3 /* NetworkPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0016F7D8230AF11B004FB3E3 /* XCRemoteSwiftPackageReference "NetworkPackage" */;
+			productName = NetworkPackage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0016F79A230AEF13004FB3E3 /* Project object */;
 }
