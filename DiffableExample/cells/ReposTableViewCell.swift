@@ -31,23 +31,6 @@ class ReposTableViewCell: UITableViewCell {
         
         favoriteImage.isHidden = true
         
-        //configure avatar
-//        if !( repo.repoOwner.avatarUrl != nil && repo.repoOwner.avatarUrl!.isEmpty) {
-//            viewModel.getAvatarImageForOwner(ownerId: repo.repoOwner.ownerId, avatarUrl: repo.repoOwner.avatarUrl!) { (image) in
-//                DispatchQueue.main.async {
-//                    if let avatarImage = image {
-//                            UIView.transition(with: avatarImageView,
-//                                              duration: 1,
-//                                              options: .transitionCrossDissolve,
-//                                              animations: {
-//                                               avatarImageView.image = avatarImage
-//                            },
-//                                              completion: nil)
-//
-//                    }
-//                }
-//            }
-//        }
     }
     
 }

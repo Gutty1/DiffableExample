@@ -134,7 +134,7 @@
                 <outlet property="repoTitleLbl" destination="ae4-ON-UVu" id="uuH-3T-Whe"/>
                 <outlet property="startgazersCountLbl" destination="s0F-uT-zv2" id="kbE-nC-Lbo"/>
             </connections>
-            <point key="canvasLocation" x="139" y="154"/>
+            <point key="canvasLocation" x="139" y="144"/>
         </tableViewCell>
     </objects>
     <resources>
