@@ -173,17 +173,18 @@ extension ViewController {
     }
     
     func updateUI(animated: Bool = true) {
-        let filteredRepo = filterRepo()
+        DispatchQueue.global().async {
+            let filteredRepo = self.filterRepo()
+            
+            var currentSnapshot = NSDiffableDataSourceSnapshot<Section, Repository>()
+            
+            currentSnapshot.appendSections([.main])
+            currentSnapshot.appendItems(filteredRepo, toSection: .main)
+            
+            self.dataSource.apply(currentSnapshot, animatingDifferences: animated)
+        }
         
-        let currentSnapshot = NSDiffableDataSourceSnapshot<Section, Repository>()
-        
-        currentSnapshot.appendSections([.main])
-        currentSnapshot.appendItems(filteredRepo, toSection: .main)
-        
-        dataSource.apply(currentSnapshot, animatingDifferences: animated)
     }
-    
-    
     
     
 }
