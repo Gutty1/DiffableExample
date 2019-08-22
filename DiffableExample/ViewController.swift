@@ -41,7 +41,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    #if NEW
     var dataSource: UITableViewDiffableDataSource<Section, Repository>! = nil
+    #endif
     static let reuseIdentifier = "ReposTableViewCell"
     
     var repo: Array<Repository>?
@@ -62,8 +64,10 @@ class ViewController: UIViewController {
         popularitySelected = popularitySegment.selectedSegmentIndex == 1
         didTapSegment(index: filterSegment.selectedSegmentIndex)
         setupTable()
+         #if NEW
         configureDataSource()
         updateUI(animated: false)
+        #endif
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(timerHandler), userInfo: nil, repeats: true)
         internalTimerHandler()
     }
@@ -73,17 +77,23 @@ class ViewController: UIViewController {
     
     @IBAction func didTapSegment(_ sender: UISegmentedControl) {
         didTapSegment(index: sender.selectedSegmentIndex)
+        #if NEW
         updateUI()
-//        filteredRepo = filterRepo()
-//        tableView.reloadData()
+        #else
+        filteredRepo = filterRepo()
+        tableView.reloadData()
+        #endif
         
     }
     
     @IBAction func didTapPopularitySegment(_ sender: UISegmentedControl) {
         didTapPopularitySegment(index: sender.selectedSegmentIndex)
+        #if NEW
         updateUI()
-        //        filteredRepo = filterRepo()
-        //        tableView.reloadData()
+        #else
+        filteredRepo = filterRepo()
+        tableView.reloadData()
+        #endif
     }
     
     
@@ -97,11 +107,14 @@ class ViewController: UIViewController {
                         print("error: \(error)")
                     } else if let result = result {
                         self?.repo = result
+                        #if NEW
                         self?.updateUI()
-        //                DispatchQueue.main.async {
-        //                    self?.filteredRepo = self?.filterRepo()
-        //                    self?.tableView.reloadData()
-        //                }
+                        #else
+                        DispatchQueue.main.async {
+                            self?.filteredRepo = self?.filterRepo()
+                            self?.tableView.reloadData()
+                        }
+                        #endif
                         
                     }
                 }
@@ -147,9 +160,10 @@ extension ViewController {
         tableView.register(UINib(nibName: ViewController.reuseIdentifier, bundle: nil), forCellReuseIdentifier: ViewController.reuseIdentifier)
         tableView.estimatedRowHeight = 120
         tableView.rowHeight = UITableView.automaticDimension
-        
-//        tableView.dataSource = self
-        
+         #if NEW
+        #else
+        tableView.dataSource = self
+        #endif
         
         
     }
