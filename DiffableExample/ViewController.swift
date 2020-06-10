@@ -169,7 +169,7 @@ extension ViewController {
     }
     
     private func configureDataSource() {
-        
+         #if NEW
         dataSource = UITableViewDiffableDataSource
             <Section, Repository>(tableView: tableView) {
                 (tableView: UITableView, indexPath: IndexPath, item: Repository) -> UITableViewCell? in
@@ -182,11 +182,12 @@ extension ViewController {
                 return cell
         }
         dataSource.defaultRowAnimation = .fade
-
+        #endif
         
     }
     
     func updateUI(animated: Bool = true) {
+         #if NEW
         DispatchQueue.global().async {
             let filteredRepo = self.filterRepo()
             
@@ -197,7 +198,7 @@ extension ViewController {
             
             self.dataSource.apply(currentSnapshot, animatingDifferences: animated)
         }
-        
+        #endif
     }
     
     
