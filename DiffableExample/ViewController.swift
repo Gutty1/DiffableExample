@@ -64,14 +64,14 @@ class ViewController: UIViewController {
         popularitySelected = popularitySegment.selectedSegmentIndex == 1
         didTapSegment(index: filterSegment.selectedSegmentIndex)
         setupTable()
-         #if NEW
+        #if NEW
         configureDataSource()
         updateUI(animated: false)
         #endif
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(timerHandler), userInfo: nil, repeats: true)
         internalTimerHandler()
     }
-
+    
     
     //MARK: - Actions
     
@@ -102,22 +102,22 @@ class ViewController: UIViewController {
     }
     
     func internalTimerHandler() {
-         getRepos(period: .Month) {  [weak self] (result, error) in
-                    if let error = error {
-                        print("error: \(error)")
-                    } else if let result = result {
-                        self?.repo = result
-                        #if NEW
-                        self?.updateUI()
-                        #else
-                        DispatchQueue.main.async {
-                            self?.filteredRepo = self?.filterRepo()
-                            self?.tableView.reloadData()
-                        }
-                        #endif
-                        
-                    }
+        getRepos(period: .Month) {  [weak self] (result, error) in
+            if let error = error {
+                print("error: \(error)")
+            } else if let result = result {
+                self?.repo = result
+                #if NEW
+                self?.updateUI()
+                #else
+                DispatchQueue.main.async {
+                    self?.filteredRepo = self?.filterRepo()
+                    self?.tableView.reloadData()
                 }
+                #endif
+                
+            }
+        }
     }
     
 }
@@ -141,8 +141,8 @@ extension ViewController {
     
     private func didTapPopularitySegment(index: Int) {
         popularitySelected = index == 1
-           
-       }
+        
+    }
     
     private func filterRepo() -> Array<Repository> {
         guard let repo = repo else { return Array<Repository>()}
@@ -160,7 +160,7 @@ extension ViewController {
         tableView.register(UINib(nibName: ViewController.reuseIdentifier, bundle: nil), forCellReuseIdentifier: ViewController.reuseIdentifier)
         tableView.estimatedRowHeight = 120
         tableView.rowHeight = UITableView.automaticDimension
-         #if NEW
+        #if NEW
         #else
         tableView.dataSource = self
         #endif
@@ -169,7 +169,7 @@ extension ViewController {
     }
     
     private func configureDataSource() {
-         #if NEW
+        #if NEW
         dataSource = UITableViewDiffableDataSource
             <Section, Repository>(tableView: tableView) {
                 (tableView: UITableView, indexPath: IndexPath, item: Repository) -> UITableViewCell? in
@@ -187,7 +187,7 @@ extension ViewController {
     }
     
     func updateUI(animated: Bool = true) {
-         #if NEW
+        #if NEW
         DispatchQueue.global().async {
             let filteredRepo = self.filterRepo()
             
@@ -222,73 +222,73 @@ extension ViewController: UITableViewDataSource {
 
 
 extension ViewController {
-//MARK: - API implementation
+    //MARK: - API implementation
     
     ///get from API the repos for the requested period
-     private func getDataFromAPI(period:Period, completion: @escaping (( _ jsonObject:JsonAssociatedData?, _ error: Error?)->Void)) {
-         let connection = ConnectionManager()
-         
-         //set REST request
-         ///URL in string format for the connection
-         let urlString = Constants.hostAPI + "/search/repositories"
-         
-         let requestedDate = Date().addMonths(months: -1)
-         
-         var params = Dictionary<String,String>()
-         params["q"] = "created:>\(requestedDate.asQueryDate!)"
-         params["sort"] = "stars"
-         params["order"] = "desc"
-         
-         let request = Request(method: .get, path: urlString, params: params, header: Dictionary<String,String>())
-         
-         connection.execute(request: request) { (response) in
-             if let error = response.error {
-                 print("Error: \(error)")
-             } else if let data = response.data {
-                 //parse the json
-                     let decoder = JSONDecoder()
-                     decoder.dateDecodingStrategy = .iso8601
-                     do{
-                         let jsonParsed = try decoder.decode(JsonAssociatedData.self, from: data)
-                         
-                         completion(jsonParsed, nil)
-                         return
-                     } catch let jsonError {
-                         completion(nil, jsonError)
-                         return
-                     }
-                 } else {
-                     completion(nil, iError.RuntimeError(reason: "Wrong Data returned from Server"))
-                     return
-                 }
-                 
-             }
-         }
-         
-     
-     
-      func getRepos(period:Period, completion: @escaping ((_ newData:Array<Repository>?,_ error: Error?)->Void))  {
-         //Get data from server
-         getDataFromAPI(period: period) { [weak self] (jsonParsedObject, error) in
-
-             if let error = error {
-                 print("Error: \(error.localizedDescription)")
-                 completion(nil,error)
-                 return
-             } else {
-                 if let newRepos = jsonParsedObject?.repos  {
-                     self?.repo = newRepos
-                     
-                     //update caller that new data arrived
-                     return completion(newRepos,nil)
-                     
-                 } else {
-                     //no data arrived
-                     return completion(nil,iError.NoDataArrived)
-                 }
-             }
-         }
-     }
+    private func getDataFromAPI(period:Period, completion: @escaping (( _ jsonObject:JsonAssociatedData?, _ error: Error?)->Void)) {
+        let connection = ConnectionManager()
+        
+        //set REST request
+        ///URL in string format for the connection
+        let urlString = Constants.hostAPI + "/search/repositories"
+        
+        let requestedDate = Date().addMonths(months: -1)
+        
+        var params = Dictionary<String,String>()
+        params["q"] = "created:>\(requestedDate.asQueryDate!)"
+        params["sort"] = "stars"
+        params["order"] = "desc"
+        
+        let request = Request(method: .get, path: urlString, params: params, header: Dictionary<String,String>())
+        
+        connection.execute(request: request) { (response) in
+            if let error = response.error {
+                print("Error: \(error)")
+            } else if let data = response.data {
+                //parse the json
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                do{
+                    let jsonParsed = try decoder.decode(JsonAssociatedData.self, from: data)
+                    
+                    completion(jsonParsed, nil)
+                    return
+                } catch let jsonError {
+                    completion(nil, jsonError)
+                    return
+                }
+            } else {
+                completion(nil, iError.RuntimeError(reason: "Wrong Data returned from Server"))
+                return
+            }
+            
+        }
+    }
     
-
+    
+    
+    func getRepos(period:Period, completion: @escaping ((_ newData:Array<Repository>?,_ error: Error?)->Void))  {
+        //Get data from server
+        getDataFromAPI(period: period) { [weak self] (jsonParsedObject, error) in
+            
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                completion(nil,error)
+                return
+            } else {
+                if let newRepos = jsonParsedObject?.repos  {
+                    self?.repo = newRepos
+                    
+                    //update caller that new data arrived
+                    return completion(newRepos,nil)
+                    
+                } else {
+                    //no data arrived
+                    return completion(nil,iError.NoDataArrived)
+                }
+            }
+        }
+    }
+    
+    
 }
