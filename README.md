@@ -1,0 +1,2 @@
+# DiffableExample
+Diffable example
